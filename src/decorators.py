@@ -1,13 +1,14 @@
+from datetime import datetime
+
 def log_decorator(filename=""):
-    """This decorator creates Log information"""
+    """Decorator create log about function operation."""
     def my_decorator(func):
         def wrapper(*args, **kwargs):
             try:
-                time_1 = time
                 result = func(*args, **kwargs)
-                time_2 = time
+
                 if filename:
-                    with open(filename, "w", encoding="utf-8") as file:
+                    with open(filename, "w") as file:
                         file.write(f"{func.__name__} ok")
                 else:
                     print(f"{func.__name__} ok")
@@ -25,9 +26,24 @@ def log_decorator(filename=""):
 
 
 @log_decorator(filename="mylog.txt")
-def my_function(x, y):
+def function(x, y):
     return x + y
 
 
-my_function(1, 2)
-my_function(1, "2")
+def timer(func):
+    def wrapper(*args, **kwargs):
+        time_1 = datetime.now()
+        result = func(*args, **kwargs)
+        time_2 = datetime.now()
+        print(time_2 - time_1)
+        return result
+
+    return wrapper
+
+
+
+function = timer(function)
+
+
+
+function(1, 7)
