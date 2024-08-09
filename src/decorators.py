@@ -25,25 +25,23 @@ def log_decorator(filename=""):
     return my_decorator
 
 
-@log_decorator(filename="mylog.txt")
-def function(x, y):
-    return x + y
-
-
 def timer(func):
     def wrapper(*args, **kwargs):
         time_1 = datetime.now()
         result = func(*args, **kwargs)
         time_2 = datetime.now()
+        print(time_1)
         print(time_2 - time_1)
+        print(time_2)
         return result
 
     return wrapper
 
 
-
-function = timer(function)
-
+@timer
+@log_decorator(filename="mylog.txt")
+def function(x, y):
+    return x + y
 
 
 function(1, 7)
