@@ -1,13 +1,18 @@
+ coverage: platform win32, python 3.12.4-final-0 -----------
+Name                       Stmts   Miss  Cover
+----------------------------------------------
 src\__init__.py                0      0   100%
+src\decorators.py             28      2    93%
 src\generators.py             30      3    90%
 src\masks.py                  40      2    95%
 src\processing.py             33      1    97%
 src\widjet.py                 22      2    91%
 tests\__init__.py              0      0   100%
 tests\conftest.py             19      2    89%
+tests\test_decorators.py      35      0   100%
 tests\test_generators.py      27      0   100%
 tests\test_masks.py           50      0   100%
 tests\test_processing.py      28      0   100%
 tests\test_widget.py          29      1    97%
 ----------------------------------------------
-TOTAL                        278     11    96%
+TOTAL                        341     13    96%
