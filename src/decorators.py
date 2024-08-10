@@ -42,4 +42,4 @@ def function(x, y):
     return x + y
 
 
-function(1, 8)
+function(1, 3)

@@ -45,10 +45,12 @@ def test_log_decorator_no_console(capsys):
 
 
 def test_log_decorator_with_console(capsys):
-    # Вызов функции для создания лога
-    function(1, 2)
+    @log_decorator()
+    def function(x, y):
+        return x + y
     time_1 = datetime.now()
     time_2 = datetime.now()
+    function(1, 2)
     # Чтение захваченного вывода
     captured = capsys.readouterr()
     assert (f"function ok. Begin of work:{time_1}."
