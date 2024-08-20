@@ -22,7 +22,6 @@ def get_rubl_transactions(transaction:dict) -> float:
 			result = response.json()
 			return result
 
-
 	if __name__=="__main__":
 		transactions = {
             "id": 441945886,
