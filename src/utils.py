@@ -15,10 +15,10 @@ def get_data_about_transactions(path_to_file:str) -> list:
 	return json_data_transactions
 
 
-if __name__="__main__":
+if __name__=="__main__":
 	path_to_file="..\\data\\operations.json"
-    json_data_transactions=get_data_about_transactions(path_to_file)
-print(json_data_transactions)
+	result=get_data_about_transactions(path_to_file="..\\data\\operations.json")
+
 
 
 
