@@ -18,7 +18,7 @@ def get_data_about_transactions(path_to_file:str) -> list:
 if __name__=="__main__":
 	path_to_file="..\\data\\operations.json"
 	result=get_data_about_transactions(path_to_file="..\\data\\operations.json")
-
+print(result)
 
 
 
