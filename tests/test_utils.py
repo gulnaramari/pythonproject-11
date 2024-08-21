@@ -4,15 +4,16 @@ import pytest
 
 from src.utils import get_data_about_transactions
 
+
 def test_get_data_about_transactions():
-	"""тест на пустой список"""
-	assert get_data_about_transactions("[]")==[]
+    """тест на пустой список"""
+    assert get_data_about_transactions("[]") == []
 
 
 def test_get_data_about_transactions_wrong():
-	"""тест на неправильный путь"""
-	assert get_data_about_transactions(path_to_file="..\\main\\operations.json")==[]
-
+    """тест на неправильный путь"""
+    assert get_data_about_transactions(path_to_file="..\\main"
+                                                    "\\operations.json") == []
 
 
 @pytest.fixture
@@ -29,10 +30,11 @@ def get_wrong_file():
 
 
 @patch("builtins.open")
-def test_get_data_about_transactions(open_mock):
-    open_mock.return_value.__enter__.return_value.read.return_value = ('[{"name": "dict"}, {"name": '
-                                                                       '"user_name"}]')
-    assert get_data_about_transactions("path_my") == [{"name": "dict"}, {"name": "user_name"}]
+def test_get_data_about_transactions_1(open_mock):
+    open_mock.return_value.__enter__.return_value.read.return_value =\
+        ('[{"name": "dict"}, {"name": "user_name"}]')
+    assert (get_data_about_transactions("path_my") ==
+            [{"name": "dict"}, {"name": "user_name"}])
     open_mock.assert_called_once_with("path_my", 'r', encoding='utf-8')
 
 
@@ -54,7 +56,7 @@ def test_get_data_about_transactions_(get_correct_path):
     }
 
 
-def test_get_data_about_transactions_wrong(get_wrong_path):
+def test_get_data_about_transactions_wrong_1(get_wrong_path):
     assert get_data_about_transactions(get_wrong_path) == []
 
 

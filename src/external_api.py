@@ -1,10 +1,10 @@
-import json
-import requests
 import os
+
+import requests
 from dotenv import load_dotenv
 
 load_dotenv(".env")
-api_key = os.getenv("API_KEY")
+api_key = os.getenv("api_key")
 
 
 def get_rub_transactions(transaction: dict) -> float:
@@ -13,21 +13,16 @@ def get_rub_transactions(transaction: dict) -> float:
     currency = (transaction["operationAmount"]["currency"]["code"])
     if currency == "RUB":
         return float(amount)
-    elif currency in ["USD","EUR"]:
-        url = "https://api.apilayer.com/exchangerates_data/convert?to=RUB&from=USD&amount=2"
-        payload = {}
-        headers = {"apikey": "GWXUgoP8ncjVagpxkWwJzrzksblrMRo8"}
-        response = requests.request("GET", url, headers=headers, data = payload)
-
-        status_code = response.status_code
-        print(f"Статус код {status_code}")
-        if status_code == 200:
-            response_text = json.loads(response.text)
-            res = response_text['result']
-            return round(res, 1)
-        else:
-            return None
-
+    elif currency in ["USD", "EUR"]:
+        url = (f"https://api.apilayer.com/exchangerates_data/convert?"
+               f"to=RUB&from={currency}&amount={amount}")
+        headers = {"api_key": "GWXUgoP8ncjVagpxkWwJzrzksblrMRo8"}
+        response = requests.request("GET", url, headers=headers)
+        json_result = response.json()
+        currency_amount = json_result["result"]
+        return currency_amount
+    else:
+        return None
 
 
 if __name__ == "__main__":
@@ -66,34 +61,33 @@ print(r)
 
 if __name__ == "__main__":
     transaction = {
-    "id": 939719570,
-    "state": "EXECUTED",
-    "date": "2018-06-30T02:08:58.425572",
-    "operationAmount": {
-      "amount": "9824.07",
-      "currency": {
-        "name": "USD",
-        "code": "USD"
-      }
-    },
-    "description": "Перевод организации",
-    "from": "Счет 75106830613657916952",
-    "to": "Счет 11776614605963066702"
-  }
+        "id": 939719570,
+        "state": "EXECUTED",
+        "date": "2018-06-30T02:08:58.425572",
+        "operationAmount": {
+            "amount": "9824.07",
+            "currency": {
+                "name": "USD",
+                "code": "USD"
+            }
+        },
+        "description": "Перевод организации",
+        "from": "Счет 75106830613657916952",
+        "to": "Счет 11776614605963066702"
+    }
     r = get_rub_transactions(transaction={
-    "id": 939719570,
-    "state": "EXECUTED",
-    "date": "2018-06-30T02:08:58.425572",
-    "operationAmount": {
-      "amount": "9824.07",
-      "currency": {
-        "name": "USD",
-        "code": "USD"
-      }
-    },
-    "description": "Перевод организации",
-    "from": "Счет 75106830613657916952",
-    "to": "Счет 11776614605963066702"
-  })
+        "id": 939719570,
+        "state": "EXECUTED",
+        "date": "2018-06-30T02:08:58.425572",
+        "operationAmount": {
+            "amount": "9824.07",
+            "currency": {
+                "name": "USD",
+                "code": "USD"
+            }
+        },
+        "description": "Перевод организации",
+        "from": "Счет 75106830613657916952",
+        "to": "Счет 11776614605963066702"
+    })
 print(r)
-

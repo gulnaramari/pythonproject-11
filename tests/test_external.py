@@ -1,10 +1,14 @@
-import pytest
 import os
-
 from unittest.mock import patch
-import requests
+
+import pytest
+from dotenv import load_dotenv
 
 from src.external_api import get_rub_transactions
+
+load_dotenv(".env")
+api_key = os.getenv("api_key")
+
 
 @pytest.fixture
 def transaction_in_rub():
@@ -26,10 +30,8 @@ transaction = {
         "name": "руб.",
         "code": "RUB"
       }
-    },
-    "description": "Открытие вклада",
-    "to": "Счет 41421565395219882431"
-  }
+    }
+}
 
 
 def test_get_rub_transactions_from_rub(transaction_in_rub):
@@ -41,25 +43,24 @@ transaction_usd_correct = {
         "state": "EXECUTED",
         "date": "2018-08-19T04:27:37.904916",
         "operationAmount": {
-            "amount": "56883.54",
+            "amount": "2.0",
             "currency": {
                 "name": "USD",
                 "code": "USD"
             }
-        },
-        "description": "Перевод с карты на карту",
-        "from": "Visa Classic 6831982476737658",
-        "to": "Visa Platinum 8990922113665229"
         }
+}
 
 
 def test_get_rub_transactions_correct_from_usd(transaction_in_usd):
-    assert get_rub_transactions(transaction_usd_correct) == 183.3
+    assert get_rub_transactions(transaction_usd_correct) == 183.35
 
 
 @pytest.fixture
 def transaction_in_usd_wrong():
     return 482.45
+
+
 transaction_wrong = {
     "id": 441945886,
     "state": "EXECUTED",
@@ -79,11 +80,12 @@ def test_get_rub_transactions_wrong(transaction_in_usd_wrong):
 
 
 @patch("requests.request")
-def test_get_rub_transactions_correct_from_usd(mock_get):
-    mock_get.return_value.json.return_value = {"result": 183.3}
-    assert get_rub_transactions(transaction_usd_correct) == 183.3
+def test_get_rub_transactions_correct_from_usd_1(mock_get):
+    mock_get.return_value.json.return_value = {"result": 183.35}
+    assert get_rub_transactions(transaction_usd_correct) == 183.35
     mock_get.assert_called_once_with(
         "GET",
-        url="https://api.apilayer.com/exchangerates_data/convert?to=RUB&from=USD&amount=2",
-        headers={"apikey": "GWXUgoP8ncjVagpxkWwJzrzksblrMRo8"}
-    )
+        "https://api.apilayer.com/exchangerates_data/"
+        "convert?to=RUB&from=USD&amount=2.0",
+        headers={"api_key": "GWXUgoP8ncjVagpxkWwJzrzksblrMRo8"},
+        )
