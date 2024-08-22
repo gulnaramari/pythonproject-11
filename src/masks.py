@@ -1,3 +1,15 @@
+import logging
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s: %(filename)s: %(levelname)s: %(message)s",
+    filename="../logs/mask.log",
+    filemode="w",
+)
+
+logger = logging.getLogger("mask")
+
+
 def get_mask_card_number(input_data: str) -> str:
     """Функция, которая принимает на вход номер карты и возвращает ее маску"""
     for arg in input_data:
