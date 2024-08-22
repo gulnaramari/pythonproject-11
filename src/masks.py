@@ -16,10 +16,12 @@ def get_mask_card_number(input_data: str) -> str:
         if not isinstance(arg, str):
             raise TypeError("Ошибка типа данных")
 
-    new_cardnumber = ""
+    new_cardnumber = input("Введите номер карты")
     new_cardname = ""
     if "Account" in input_data:
+        logger.error("Введено некорректное название карты")
         raise ValueError("Некорректное название карты")
+
     else:
         for symbol in input_data:
             if symbol.isdigit():
@@ -32,9 +34,12 @@ def get_mask_card_number(input_data: str) -> str:
             slice_2 = new_cardnumber[4:6]
             slice_3 = new_cardnumber[-4:]
             mask_card = slice_1 + " " + slice_2 + "** **** " + slice_3
+            logger.info(f"Получение маски номера карты: {mask_card}")
         else:
+            logger.error("Введен некорректный номер карты")
             raise ValueError("Некорректный номер карты")
     else:
+        logger.error("Введен некорректный номер карты")
         raise ValueError("Некорректный номер карты")
     return (f"{new_cardname} {mask_card}")
 
@@ -58,12 +63,14 @@ def get_mask_account(input_data: str) -> str:
         mask_account = "**" + slice_number
         return (f"{new_accountname} {mask_account}")
     else:
+        logger.error("Введен некорректный номер счета")
         raise ValueError("Некорректный ввод")
-
     if len(new_number) == 20:
         if new_number[0] != "0":
             slice_number = new_number[-4:]
             mask_account = "**" + slice_number
+            logger.info(f"Получение маски номера счета: {mask_account}")
     else:
+        logger.error("Введен некорректный номер счета")
         raise ValueError("Некорректный номер счета")
     return (f"{new_name} {mask_account}")
