@@ -16,7 +16,7 @@ def get_mask_card_number(input_data: str) -> str:
         if not isinstance(arg, str):
             raise TypeError("Ошибка типа данных")
 
-    new_cardnumber = input("Введите номер карты")
+    new_cardnumber = ""
     new_cardname = ""
     if "Account" in input_data:
         logger.error("Введено некорректное название карты")
