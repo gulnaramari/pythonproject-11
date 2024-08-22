@@ -33,24 +33,29 @@ pip install -r requirements.txt
 4. Для получения дополнительной информации обратитесь к [документации](docs/README.md).
 
 Информация о тестировании приложения:
-см. в файле [test_report от 10.08.2024].
-Общий процент покрытия приложения тестами составляет 96%.
+см. в файле [test_report от 21.08.2024].
+Общий процент покрытия приложения тестами составляет 94%.
 ----------------------------------------------
-src\__init__.py                0      0   100%
+ssrc\__init__.py                0      0   100%
 src\decorators.py             24      2    92%
+src\external_api.py           28      4    86%
 src\generators.py             30      3    90%
 src\masks.py                  40      2    95%
 src\processing.py             33      1    97%
+src\utils.py                  16      5    69%
 src\widjet.py                 22      2    91%
 tests\__init__.py              0      0   100%
 tests\conftest.py             19      2    89%
 tests\test_decorators.py      33      0   100%
+tests\test_external.py        29      3    90%
 tests\test_generators.py      27      0   100%
 tests\test_masks.py           50      0   100%
 tests\test_processing.py      28      0   100%
+tests\test_utils.py           25      2    92%
 tests\test_widget.py          29      1    97%
 ----------------------------------------------
-TOTAL                        335     13    96%
+TOTAL                        433     27    94%
+
 
 
 
