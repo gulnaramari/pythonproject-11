@@ -17,7 +17,7 @@ def test_get_data_about_transactions_wrong():
 
 
 @pytest.fixture
-def get_path(): return '../data/operations.json'
+def get_correct_path(): return '../data/operations.json'
 
 
 @pytest.fixture

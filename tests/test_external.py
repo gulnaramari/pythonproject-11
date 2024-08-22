@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from src.external_api import get_rub_transactions
 
 load_dotenv(".env")
-api_key = os.getenv("api_key")
+api_key = os.getenv("API_KEY")
 
 
 @pytest.fixture
@@ -52,10 +52,6 @@ transaction_usd_correct = {
 }
 
 
-def test_get_rub_transactions_correct_from_usd(transaction_in_usd):
-    assert get_rub_transactions(transaction_usd_correct) == 183.35
-
-
 @pytest.fixture
 def transaction_in_usd_wrong():
     return 482.45
@@ -79,13 +75,12 @@ def test_get_rub_transactions_wrong(transaction_in_usd_wrong):
     assert get_rub_transactions(transaction_wrong) == None
 
 
-@patch("requests.request")
+@patch("requests.get")
 def test_get_rub_transactions_correct_from_usd_1(mock_get):
     mock_get.return_value.json.return_value = {"result": 183.35}
     assert get_rub_transactions(transaction_usd_correct) == 183.35
     mock_get.assert_called_once_with(
-        "GET",
         "https://api.apilayer.com/exchangerates_data/"
         "convert?to=RUB&from=USD&amount=2.0",
-        headers={"api_key": "GWXUgoP8ncjVagpxkWwJzrzksblrMRo8"},
+        headers={"apikey": api_key}
         )
