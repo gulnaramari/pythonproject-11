@@ -11,5 +11,4 @@ def get_date(input_data: str) -> str:
     return slice_date
 
 
-
 print(get_date("2024-03-11T02:26:18.671407"))
