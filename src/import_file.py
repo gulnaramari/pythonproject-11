@@ -7,11 +7,11 @@ def transaction_from_csv(file: str) -> list[dict]:
     """Function gets data from csv file and gives list of dictionaries"""
     transaction_ = []
     try:
-        with open(csv_path, encoding="utf-8") as csv_file:
-            reader = csv.reader(csv_file, delimiter=";")
-            next(reader)
+        with open(file, "r", encoding="utf-8") as file:
+            reader = csv.reader(file, delimiter=";")
+            header = next(reader)
             for row in reader:
-                dict_ = {
+                row_dict = {
                     "id": row[header.index("id")],
                     "state": row[header.index("state")],
                     "date": row[header.index("date")],
@@ -26,21 +26,16 @@ def transaction_from_csv(file: str) -> list[dict]:
                     "from": row[header.index("from")],
                     "to": row[header.index("to")],
                 }
-                transaction_.append(dict_)
+                transaction_.append(row_dict)
     except Exception:
         return []
     return transaction_
 
 
-if __name__ == "__main__":
-    result = transaction_from_csv("..\\data\\transactions.csv")
-    print(result)
-
-
 def transaction_from_excel(file: str) -> list[dict]:
     """Функция считывающая файл в формате excel и возвращающая список словарей"""
     df = pd.read_excel(file)
-    result = []
+    result_ = []
     count_ = len(df)
     for i in range(0, count_):
         dict_r = {
@@ -58,10 +53,15 @@ def transaction_from_excel(file: str) -> list[dict]:
             "from": df.at[i, "from"],
             "to": df.at[i, "to"],
         }
-        result.append(dict_r)
-    return result
+        result_.append(dict_r)
+    return result_
 
 
 if __name__ == "__main__":
     result = transaction_from_excel("..\\data\\transactions_excel.xlsx")
+    print(result)
+
+
+if __name__ == "__main__":
+    result = transaction_from_csv("..\\data\\transactions.csv")
     print(result)
