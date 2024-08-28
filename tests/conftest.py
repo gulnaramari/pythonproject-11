@@ -20,7 +20,6 @@ def test_df() -> pd.DataFrame:
     return pd.DataFrame(test_dict)
 
 
-
 @pytest.fixture
 def test_initial_list() -> list[dict[str, Any]]:
     return [{"id": 41428829, "state": "EXECUTED",

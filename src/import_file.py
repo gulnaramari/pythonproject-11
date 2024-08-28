@@ -5,10 +5,11 @@ import logging
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s: %(filename)s: %(levelname)s: %(message)s",
-    filename="../logs/mask.log",
+    filename="../logs/import_file.log",
     filemode="w",
 )
 read_csvExcel_logger = logging.getLogger("import_file")
+
 
 def transactions_from_csvExcel(path_to_file: str) -> list[dict]:
     """Функция чтения данных из csv и Excel файлов"""
@@ -31,6 +32,7 @@ def transactions_from_csvExcel(path_to_file: str) -> list[dict]:
         read_csvExcel_logger.info('The work is completed')
         print('Файл не найден')
         return []
+
 
 if __name__ == "__main__":
     result = transactions_from_csvExcel("..\\data\\transactions_excel.xlsx")
