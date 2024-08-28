@@ -21,6 +21,22 @@ def test_df() -> pd.DataFrame:
 
 
 @pytest.fixture
+def test_wrong_df() -> pd.DataFrame:
+    """Тестовый DataFrame для чтения неправльных данных о транзакциях csv или excel"""
+    test_wrong_dict = {
+        "id": [650703.0, 3598919.0],
+        "state": ["EXECUTED", "EXECUTED"],
+        "date": ["2023-09-05T11:30:32Z", "2020-12-06S24:00:58Z"],
+        "amount": [22210.0, 29740.0],
+        "currency_name": ["Sol", "Peso"],
+        "currency_code": ["PEN", "COP"],
+        "from": ["Счет 58803664561298323391", "Discover 3002601889670065"],
+        "to": ["Счет 39745660563456619397", "Discover 0720428384694643"],
+        "description": ["Перевод организации", "Перевод с карты на карту"]
+    }
+    return pd.DataFrame(test_wrong_dict)
+
+@pytest.fixture
 def test_initial_list() -> list[dict[str, Any]]:
     return [{"id": 41428829, "state": "EXECUTED",
              "date": "2019-07-03T18:35:29.512364"},

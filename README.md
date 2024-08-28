@@ -28,35 +28,36 @@ pip install -r requirements.txt
 - Приложение автоматически регистрирует детали выполнения функций:
   время вызова, имя функции, передаваемые аргументы, результат выполнения и информация об ошибках.
 - Приложение обеспечивает глубокий контроль и анализ поведения программы в процессе ее выполнения.
-
+- Приложение позволяет считывать файлы в форматах csv и excel
 
 4. Для получения дополнительной информации обратитесь к [документации](docs/README.md).
 
 Информация о тестировании приложения:
-см. в файле [test_report от 21.08.2024].
-Общий процент покрытия приложения тестами составляет 94%.
+см. в файле [test_report от 28.08.2024].
+Общий процент покрытия приложения тестами составляет 92%.
 ----------------------------------------------
-ssrc\__init__.py                0      0   100%
+src\__init__.py                0      0   100%
 src\decorators.py             24      2    92%
-src\external_api.py           28      4    86%
+src\external_api.py           29      3    90%
 src\generators.py             30      3    90%
-src\masks.py                  40      2    95%
+src\import_file.py            29      4    86%
+src\main.py                   16      1    94%
+src\masks.py                  50      3    94%
 src\processing.py             33      1    97%
-src\utils.py                  16      5    69%
-src\widjet.py                 22      2    91%
+src\utils.py                  34     16    53%
+src\widget.py                 10      1    90%
 tests\__init__.py              0      0   100%
-tests\conftest.py             19      2    89%
+tests\conftest.py             28      4    86%
 tests\test_decorators.py      33      0   100%
-tests\test_external.py        29      3    90%
+tests\test_external.py        28      1    96%
 tests\test_generators.py      27      0   100%
-tests\test_masks.py           50      0   100%
+tests\test_import.py          13      0   100%
+tests\test_masks.py           58      0   100%
 tests\test_processing.py      28      0   100%
-tests\test_utils.py           25      2    92%
-tests\test_widget.py          29      1    97%
+tests\test_utils.py           25      0   100%
+tests\test_widget.py          30      1    97%
 ----------------------------------------------
-TOTAL                        433     27    94%
-
-
+TOTAL                        525     40    92%
 
 
 

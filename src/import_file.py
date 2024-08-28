@@ -26,7 +26,7 @@ def transactions_from_csvExcel(path_to_file: str) -> list[dict]:
             read_csvExcel_logger.info('Creating a DataFrame from a Excel file is successful')
             result_Excel = df.to_dict(orient='records')
             read_csvExcel_logger.info('Reading was completed')
-        return result_Excel
+            return result_Excel
     except FileNotFoundError:
         read_csvExcel_logger.warning('File not found. Incorrect path to file')
         read_csvExcel_logger.info('The work is completed')
