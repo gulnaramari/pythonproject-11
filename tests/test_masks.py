@@ -2,6 +2,7 @@ from typing import Any
 
 import pytest
 
+from src.main import mask_account_card
 from src.masks import get_mask_account, get_mask_card_number
 
 
@@ -116,3 +117,32 @@ def test_get_mask_account_invalid_number(user_data: str) -> Any:
 def test_get_mask_account_wrong_type(user_data: str) -> Any:
     with pytest.raises(TypeError):
         get_mask_account(user_data)
+
+
+@pytest.mark.parametrize("input_data, expected_mask", [
+                        ("Visa Classic 6831982476737658",
+                         "VisaClassic 6831 98** **** 7658"),
+                        ("Visa Gold 5999414228426353",
+                         "VisaGold 5999 41** **** 6353"),
+                        ("Maestro 1596837868705199",
+                         "Maestro 1596 83** **** 5199"),
+                        ("Account 35383033474447895560",
+                         "Account **5560"),
+                        ("Account 73654108430135874305",
+                         "Account **4305"),
+                        ("MasterCard 7158300734726758",
+                         "MasterCard 7158 30** **** 6758"),
+                         ])
+def test_mask_account_card(input_data: str, expected_mask: str) -> Any:
+    assert mask_account_card(input_data) == expected_mask
+
+
+@pytest.mark.parametrize("input_data", [
+                        (6831982476737658),
+                        (2345),
+                        (1098765),
+                        (7158300734726758),
+                         ])
+def test_mask_account_card_wrong_type(input_data: str) -> Any:
+    with pytest.raises(TypeError):
+        mask_account_card(input_data)

@@ -41,7 +41,7 @@ def get_mask_card_number(input_data: str) -> str:
     else:
         logger.error("Incorrect card number entered")
         raise ValueError("Incorrect card number")
-    return (f"{new_cardname} {mask_card}")
+    return f"{new_cardname} {mask_card}"
 
 
 def get_mask_account(input_data: str) -> str:
@@ -63,7 +63,7 @@ def get_mask_account(input_data: str) -> str:
         slice_number = new_number[-4:]
         mask_account = "**" + slice_number
         logger.info(f"Getting account number mask: {mask_account}")
-        return (f"{new_accountname} {mask_account}")
+        return f"{new_accountname} {mask_account}"
     else:
         logger.error("Incorrect account number entered")
         raise ValueError("Incorrect input")
@@ -75,4 +75,4 @@ def get_mask_account(input_data: str) -> str:
         else:
             logger.error("Incorrect account number entered")
             raise ValueError("Incorrect account number")
-    return (f"{new_name} {mask_account}")
+    return f"{new_name} {mask_account}"

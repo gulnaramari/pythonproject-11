@@ -6,7 +6,7 @@ logging.basicConfig(
     format="%(asctime)s: %(filename)s: %(levelname)s: %(message)s",
     filename="../logs/utils.log",
     filemode="w",
-                    )
+)
 
 logger = logging.getLogger("utils")
 
@@ -42,10 +42,9 @@ def get_rub_transactions(transaction: dict) -> float:
         return float(amount)
     elif currency in ["USD", "EUR"]:
         logger.error("Operation amount can't be done")
-        print(f"Operation amount can't be done")
+        print("Operation amount can't be done")
 
 
 if __name__ == "__main__":
     path_to_file = "..\\data\\operations.json"
-    print(get_data_about_transactions(path_to_file="..\\data\\"
-                                      "operations.json"))
+    print(get_data_about_transactions(path_to_file="..\\data\\" "operations.json"))
