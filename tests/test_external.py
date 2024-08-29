@@ -72,7 +72,7 @@ transaction_wrong = {
 
 
 def test_get_rub_transactions_wrong(transaction_in_usd_wrong):
-    assert get_rub_transactions(transaction_wrong) == None
+    assert get_rub_transactions(transaction_wrong) == []
 
 
 @patch("requests.get")

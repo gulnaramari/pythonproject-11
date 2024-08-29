@@ -1,4 +1,5 @@
 from typing import Any
+
 import pandas as pd
 import pytest
 
@@ -35,6 +36,7 @@ def test_wrong_df() -> pd.DataFrame:
         "description": ["Перевод организации", "Перевод с карты на карту"]
     }
     return pd.DataFrame(test_wrong_dict)
+
 
 @pytest.fixture
 def test_initial_list() -> list[dict[str, Any]]:

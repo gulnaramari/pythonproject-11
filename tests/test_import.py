@@ -1,6 +1,6 @@
-from src.import_file import transactions_from_csvExcel
 from unittest.mock import patch
-import pytest
+
+from src.import_file import transactions_from_csvExcel
 
 
 @patch('src.import_file.pd.read_excel')

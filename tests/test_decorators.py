@@ -35,7 +35,7 @@ def test_log_decorator_with_console(capsys):
     test_correct(4, 2)
     captured = capsys.readouterr()
 
-    assert captured.out == f"test_correct ok\n"
+    assert captured.out == "test_correct ok\n"
 
 
 def test_log_decorator_with_console_error(capsys):

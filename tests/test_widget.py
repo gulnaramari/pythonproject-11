@@ -2,8 +2,8 @@ from typing import Any
 
 import pytest
 
-from src.widget import get_date
 from src.main import mask_account_card
+from src.widget import get_date
 
 
 @pytest.fixture
