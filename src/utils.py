@@ -12,7 +12,7 @@ logger = logging.getLogger("utils")
 
 
 def get_data_about_transactions(path_to_file: str) -> list:
-    """Функция принимает путь до файла, а на выход дает
+    """Функция принимает путь до файла JSON, а на выход дает
     список словарей с транзакциями"""
     try:
         logger.info("Request for file path")
