@@ -76,3 +76,8 @@ def get_mask_account(input_data: str) -> str:
             logger.error("Incorrect account number entered")
             raise ValueError("Incorrect account number")
     return f"{new_name} {mask_account}"
+
+
+
+
+

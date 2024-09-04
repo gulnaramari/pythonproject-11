@@ -5,34 +5,43 @@ from src.date_format import date_formatting
 from src.processing import filter_by_state, sort_by_date
 from src.import_file import transactions_from_csvExcel
 from src.search_on_string import filter_by_description, search_on_string
-from src.utils import get_data_about_transactions
+from src.utils import get_transactions
 from src.widget import mask_account_card
 
 
-def main_menu():
+def main():
+
+    print(
+        """Привет! Добро пожаловать в программу работы
+с банковскими транзакциями.
+Выберите необходимый пункт меню:
+1. Получить информацию о транзакциях из JSON-файла
+2. Получить информацию о транзакциях из CSV-файла
+3. Получить информацию о транзакциях из XLSX-файла\n"""
+    )
 
     while True:
-        choose_a_method = input("Выберите подходящий метод:"
-                                "1 - Получить данные о транзакциях из JSON-файла"
-                                "2 - Получить данные о транзакциях из CSV-файла"
-                                "3 - Получить данные о транзакциях из XLSX-файла")
-        if choose_a_method == "1":
-            transactions = get_data_about_transactions(PATH_TO_JSON)
+        input_ = input("Выберите подходящий пункт: ")
+        if input_ == "1":
+            print("\nДля обработки выбран JSON-файл.")
+            transactions = get_transactions(PATH_TO_JSON)
             break
-        elif choose_a_method == "2":
+        elif input_ == "2":
+            print("\nДля обработки выбран CSV-файл.")
             transactions = transactions_from_csvExcel(PATH_TO_CSV)
             break
-        elif choose_a_method == "3":
+        elif input_ == "3":
+            print("\nДля обработки выбран XLSX-файл.")
             transactions = transactions_from_csvExcel(PATH_TO_XLSX)
             break
         else:
             continue
-
-    status_for_transactions = ["EXECUTED", "CANCELED", "PENDING"]
+    transactions_state = ["EXECUTED", "CANCELED", "PENDING"]
     while True:
-        status_ = input("подходящий статус транзакции: EXECUTED, CANCELED, PENDING\n ")
-        if status_.upper() in status_for_transactions:
-            filtered_transactions = filter_by_state(transactions, status_)
+        state_input= input("\nВведите статус, по которому необходимо выполнить фильтрацию.\n "
+                                  "Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING\n ")
+        if state_input.upper() in transactions_state:
+            filtered_transactions = filter_by_state(transactions, state_input)
             break
     while True:
         print("\nОтсортировать операции по дате? Да/Нет")
@@ -52,7 +61,7 @@ def main_menu():
             else:
                 continue
     while True:
-        print("\nВыводить рублевые тразакции? Да/Нет")
+        print("\nВыводить только рублевые тразакции? Да/Нет")
         answer = input()
         pattern = re.compile(r"\bRUB\b")
         if answer.lower() == "да":
@@ -66,28 +75,28 @@ def main_menu():
 
     while True:
         print("""\nОтфильтровать список транзакций по определенному слову в описании? Да/Нет""")
-        filtered_or_no = input()
-        if filtered_or_no.lower() == "да":
+        word_filter = input()
+        if word_filter.lower() == "да":
             print(
                 """\n
 Доступные для фильтровки описания: Открытие вклада, Перевод организации, Перевод с карты на карту,
 Перевод со счета на счет"""
             )
-            total_transaction_list = filter_by_description(new_transactions)
+            transaction_list = filter_by_description(new_transactions)
             break
         else:
-            total_transaction_list = new_transactions
+            transaction_list = new_transactions
             break
     print(
         f"\nРаспечатываю итоговый список транзакций...\n\n"
-        f"Всего банковских операций в выборке: {len(total_transaction_list)}\n"
+        f"Всего банковских операций в выборке: {len(transaction_list)}\n"
     )
-    if len(total_transaction_list) == 0:
-        print("\nДанных нет")
+    if len(transaction_list) == 0:
+        print("\nНе найдено ни одной транзакции, подходящей под ваши условия фильтрации")
     else:
-        for operation in total_transaction_list:
+        for operation in transaction_list:
             date = date_formatting(operation.get("date"))
-            if choose_a_method == "1":
+            if input_ == "1":
                 currency_name = operation["operationAmount"]["currency"]["name"]
                 amount = operation["operationAmount"]["amount"]
                 if operation.get("description") == "Открытие вклада":
@@ -119,4 +128,4 @@ def main_menu():
 
 
 if __name__ == "__main__":
-    main_menu()
+    main()
