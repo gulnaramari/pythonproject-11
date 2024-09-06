@@ -53,7 +53,7 @@ def main():
             print("\nОтсортировать по возрастанию или по убыванию?")
             sorting_up_down = input()
             if sorting_by_date.lower() == "да" and sorting_up_down.lower() == "по возрастанию":
-                sorted_transactions = sort_by_date(filtered_transactions, is_sort=False)
+                sorted_transactions = sort_by_date(filtered_transactions, reverse=False)
                 break
             elif sorting_by_date.lower() == "да" and sorting_up_down.lower() == "по убыванию":
                 sorted_transactions = sort_by_date(filtered_transactions)

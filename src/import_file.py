@@ -5,7 +5,7 @@ import pandas as pd
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s: %(filename)s: %(levelname)s: %(message)s",
-    filename="../logs/import_file.log",
+    filename="C:\\Users\\Админ\\PycharmProjects\\pythonProject_11\\logs\\import_file",
     filemode="w",
 )
 read_csvExcel_logger = logging.getLogger("import_file")
