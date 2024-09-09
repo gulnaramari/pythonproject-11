@@ -23,7 +23,6 @@ def get_mask_card_number(card_number: str) -> str:
         mask_logger.error('Введены неверные данные карты')
 
 
-
 def get_mask_account(account_number: str) -> str:
     """Функция маскирующая номер счета"""
     mask_logger.info('Запуск программы')
@@ -35,5 +34,3 @@ def get_mask_account(account_number: str) -> str:
         return hidden_number
     else:
         mask_logger.error('Введены неверные данные счёта')
-
-

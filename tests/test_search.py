@@ -4,9 +4,9 @@ from collections import Counter
 from src.search_on_string import count_, search_on_string
 
 
-def test_search_string(list_: list[dict[str, [str, int]]]):
+def test_search_string(list_correct: list[dict[str, [str, int]]]):
     pattern = re.compile(r"\bC\D{6}D\b")
-    assert search_on_string(list_, pattern) == [
+    assert search_on_string(list_correct, pattern) == [
         {
             "id": 594226727,
             "state": "CANCELED",
@@ -27,12 +27,12 @@ def test_search_string_2(list_wrong: list[dict[str, [str, int]]]):
     ]
 
 
-def test_count(list_: list[dict[str, [str, int]]]):
-    assert count_(list_, ["Перевод организации"]) == Counter({"Перевод организации": 2})
+def test_count(list_correct: list[dict[str, [str, int]]]):
+    assert count_(list_correct, ["Перевод организации"]) == Counter({"Перевод организации": 2})
 
 
-def test_count_2(list_: list[dict[str, [str, int]]]):
-    assert count_(list_, ["Перевод организации", "Перевод со счета на счет"]) == Counter(
+def test_count_2(list_correct: list[dict[str, [str, int]]]):
+    assert count_(list_correct, ["Перевод организации", "Перевод со счета на счет"]) == Counter(
         ({"Перевод организации": 2, "Перевод со счета на счет": 1})
     )
 

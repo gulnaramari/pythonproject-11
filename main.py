@@ -19,7 +19,7 @@ def main():
 2. Получить информацию о транзакциях из CSV-файла
 3. Получить информацию о транзакциях из XLSX-файла\n"""
     )
-
+    transactions_state = ["EXECUTED", "CANCELED", "PENDING"]
     while True:
         input_ = input("Выберите подходящий пункт: ")
         if input_ == "1":
@@ -36,20 +36,19 @@ def main():
             break
         else:
             continue
-    transactions_state = ["EXECUTED", "CANCELED", "PENDING"]
+
     while True:
-        state_input= input("\nВведите статус, по которому необходимо выполнить фильтрацию.\n "
+        state_input = input("\nВведите статус, по которому необходимо выполнить фильтрацию.\n "
                                   "Доступные для фильтровки статусы: EXECUTED, CANCELED, PENDING\n ")
-        if state_input.upper() in transactions_state:
+        if state_input.upper() not in transactions_state:
+            print(f"\nСтатус операции {state_input} недоступен.")
+        else:
             filtered_transactions = filter_by_state(transactions, state_input)
             break
     while True:
         print("\nОтсортировать операции по дате? Да/Нет")
         sorting_by_date = input()
-        if sorting_by_date == "нет":
-            sorted_transactions = filtered_transactions
-            break
-        else:
+        if sorting_by_date.lower() == "да":
             print("\nОтсортировать по возрастанию или по убыванию?")
             sorting_up_down = input()
             if sorting_by_date.lower() == "да" and sorting_up_down.lower() == "по возрастанию":
@@ -60,15 +59,20 @@ def main():
                 break
             else:
                 continue
+        elif sorting_by_date == "нет":
+            sorted_transactions = filtered_transactions
+            break
+        else:
+            continue
     while True:
-        print("\nВыводить только рублевые тразакции? Да/Нет")
+        print("\nВыводить только рублевые транзакции? Да/Нет")
         answer = input()
         pattern = re.compile(r"\bRUB\b")
         if answer.lower() == "да":
-            new_transactions = search_on_string(sorted_transactions, pattern)
+            user_transactions = search_on_string(sorted_transactions, pattern)
             break
         elif answer.lower() == "нет":
-            new_transactions = sorted_transactions
+            user_transactions = sorted_transactions
             break
         else:
             continue
@@ -82,10 +86,10 @@ def main():
 Доступные для фильтровки описания: Открытие вклада, Перевод организации, Перевод с карты на карту,
 Перевод со счета на счет"""
             )
-            transaction_list = filter_by_description(new_transactions)
+            transaction_list = filter_by_description(user_transactions)
             break
         else:
-            transaction_list = new_transactions
+            transaction_list = user_transactions
             break
     print(
         f"\nРаспечатываю итоговый список транзакций...\n\n"
