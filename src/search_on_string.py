@@ -1,10 +1,10 @@
 import re
-
+from collections import Counter
 from typing import Any
 
 
 def search_on_string(
-        transactions: list[dict[str, Any]], string_for_search: re.Pattern
+    transactions: list[dict[str, Any]], string_for_search: re.Pattern
 ) -> list[dict[str, Any]]:
     """Реализована функция для поиска
     в списке словарей операций по заданной строке
@@ -22,7 +22,9 @@ def search_on_string(
         return filtered_transactions
 
 
-def count_(transactions: list[dict[str, [str, int]]], list_: list[str]) -> dict[str, int]:
+def count_(
+    transactions: list[dict[str, [str, int]]], list_: list[str]
+) -> dict[str, int]:
     """функция для подсчета количества банковских операций определенного типа."""
     description_ = []
     for transaction in transactions:
@@ -31,9 +33,13 @@ def count_(transactions: list[dict[str, [str, int]]], list_: list[str]) -> dict[
     return Counter(description_)
 
 
-def filter_by_description(transactions: list[dict[str, [str, int]]]) -> list[dict[str, [str, int]]]:
+def filter_by_description(
+    transactions: list[dict[str, [str, int]]]
+) -> list[dict[str, [str, int]]]:
     """Функция для фильтрации транзакций по описанию"""
-    user_filter = input('Введите ключевое слово для фильтрации транзакций: ').capitalize()
+    user_filter = input(
+        "Введите ключевое слово для фильтрации транзакций: "
+    ).capitalize()
     filtered_operations = []
     for transaction in transactions:
         if transaction.get("description") == user_filter:

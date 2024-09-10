@@ -48,31 +48,34 @@ main предоставляет интерфейс в соответствии �
 4. Для получения дополнительной информации обратитесь к [документации](docs/README.md).
 
 Информация о тестировании приложения:
-см. в файле [test_report от 28.08.2024].
-Общий процент покрытия приложения тестами составляет 92%.
+см. в файле [test_report от 10.09.2024].
+Общий процент покрытия приложения тестами составляет 89%.
 ----------------------------------------------
+config.py                      4      0   100%
 src\__init__.py                0      0   100%
 src\decorators.py             24      2    92%
 src\external_api.py           29      3    90%
 src\generators.py             30      3    90%
 src\import_file.py            29      4    86%
-src\main.py                   16      1    94%
-src\masks.py                  50      3    94%
+src\masks.py                  25      0   100%
 src\processing.py             33      1    97%
+src\search_on_string.py       27      8    70%
 src\utils.py                  34     16    53%
-src\widget.py                 10      1    90%
+src\widget.py                 44     11    75%
 tests\__init__.py              0      0   100%
-tests\conftest.py             28      4    86%
+tests\conftest.py             37      5    86%
 tests\test_decorators.py      33      0   100%
 tests\test_external.py        28      1    96%
 tests\test_generators.py      27      0   100%
-tests\test_import.py          13      0   100%
-tests\test_masks.py           58      0   100%
+tests\test_import.py          12      0   100%
+tests\test_masks.py            9      0   100%
 tests\test_processing.py      28      0   100%
-tests\test_utils.py           25      0   100%
+tests\test_search.py          16      0   100%
+tests\test_utils.py           11      0   100%
 tests\test_widget.py          30      1    97%
 ----------------------------------------------
-TOTAL                        525     40    92%
+TOTAL                        510     55    89%
+
 
 
 

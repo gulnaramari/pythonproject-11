@@ -25,12 +25,9 @@ transaction = {
     "state": "EXECUTED",
     "date": "2018-03-23T10:45:06.972075",
     "operationAmount": {
-      "amount": "48223.05",
-      "currency": {
-        "name": "руб.",
-        "code": "RUB"
-      }
-    }
+        "amount": "48223.05",
+        "currency": {"name": "руб.", "code": "RUB"},
+    },
 }
 
 
@@ -39,16 +36,10 @@ def test_get_rub_transactions_from_rub(transaction_in_rub):
 
 
 transaction_usd_correct = {
-        "id": 895315941,
-        "state": "EXECUTED",
-        "date": "2018-08-19T04:27:37.904916",
-        "operationAmount": {
-            "amount": "2.0",
-            "currency": {
-                "name": "USD",
-                "code": "USD"
-            }
-        }
+    "id": 895315941,
+    "state": "EXECUTED",
+    "date": "2018-08-19T04:27:37.904916",
+    "operationAmount": {"amount": "2.0", "currency": {"name": "USD", "code": "USD"}},
 }
 
 
@@ -61,13 +52,7 @@ transaction_wrong = {
     "id": 441945886,
     "state": "EXECUTED",
     "date": "2019-08-26T10:50:58.294041",
-    "operationAmount": {
-        "amount": 2.0,
-        "currency": {
-          "name": "USD",
-          "code": ""
-        }
-    }
+    "operationAmount": {"amount": 2.0, "currency": {"name": "USD", "code": ""}},
 }
 
 
@@ -82,5 +67,5 @@ def test_get_rub_transactions_correct_from_usd_1(mock_get):
     mock_get.assert_called_once_with(
         "https://api.apilayer.com/exchangerates_data/"
         "convert?to=RUB&from=USD&amount=2.0",
-        headers={"apikey": api_key}
-        )
+        headers={"apikey": api_key},
+    )
