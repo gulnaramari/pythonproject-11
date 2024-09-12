@@ -30,7 +30,7 @@ def get_rub_transactions(transaction: dict) -> float:
         amount_rub = json_result["result"]
         return amount_rub
     else:
-        return None
+        return []
 
 
 if __name__ == "__main__":

@@ -11,8 +11,8 @@ logging.basicConfig(
 logger = logging.getLogger("utils")
 
 
-def get_data_about_transactions(path_to_file: str) -> list:
-    """Функция принимает путь до файла, а на выход дает
+def get_transactions(path_to_file: str) -> list:
+    """Функция принимает путь до файла JSON, а на выход дает
     список словарей с транзакциями"""
     try:
         logger.info("Request for file path")
@@ -47,4 +47,4 @@ def get_rub_transactions(transaction: dict) -> float:
 
 if __name__ == "__main__":
     path_to_file = "..\\data\\operations.json"
-    print(get_data_about_transactions(path_to_file="..\\data\\" "operations.json"))
+    print(get_transactions(path_to_file="..\\data\\" "operations.json"))

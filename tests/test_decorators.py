@@ -15,7 +15,7 @@ def test_log_decorator_1():
 def test_log_decorator_1_console():
     @log_decorator()
     def function(x, y):
-        return x/y
+        return x / y
 
     with pytest.raises(ZeroDivisionError):
         function(1, 0)
@@ -47,5 +47,4 @@ def test_log_decorator_with_console_error(capsys):
         test_error(1, 0)
     captured = capsys.readouterr()
 
-    assert captured.out == ("test_error: ZeroDivisionError."
-                            " Inputs: (1, 0), {}\n")
+    assert captured.out == ("test_error: ZeroDivisionError." " Inputs: (1, 0), {}\n")
